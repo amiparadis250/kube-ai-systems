@@ -1,6 +1,8 @@
 # KUBE-AI: Eyes in the Sky for Africa 🚁
 
 > **Protecting wildlife and livestock through intelligent aerial monitoring**
+> 
+> **Huawei ICT Competition 2024 - Innovation Track Submission**
 
 KUBE-AI transforms drone footage into actionable intelligence, giving African communities the power to monitor their animals in real-time. From detecting lost cattle to preventing elephant poaching, our AI sees what humans can't from the ground.
 
@@ -223,26 +225,18 @@ Kube-ai/
 
 ---
 
-## The Team Behind KUBE-AI
-
-Built by passionate developers who believe technology can solve Africa's biggest challenges. We're not just building software - we're building tools that save lives, protect wildlife, and strengthen communities.
-
-**Mission:** Give every African community the power to protect what matters most.
-
----
-
 ## License & Usage
 
-**Copyright © 2024-2026 KUBE Platform**
+**Huawei ICT Competition 2024 - Innovation Track**  
+**Copyright © 2025-2026 KUBE Platform**
 
 This project is built for Africa's future. Commercial use requires permission, but we encourage:
-- ✅ Academic research
-- ✅ Conservation projects  
-- ✅ Community initiatives
-- ✅ Educational purposes
+-  Academic research
+- Conservation projects  
+- Community initiatives
+- Educational purposes
 
 ---
-
 
 *"In the vast landscapes of Africa, every animal matters. KUBE-AI ensures none go unseen."*
 
