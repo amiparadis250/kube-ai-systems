@@ -113,20 +113,36 @@ Feature Extraction (1024×7×7)
 
 ### Prerequisites
 ```bash
-Python 3.8+
+Python 3.7-3.9 (3.8 recommended)
 MindSpore 2.0+
 8GB RAM minimum
 ```
 
 ### Installation
 ```bash
+# 1. Clone repository
 git clone https://github.com/your-username/Kube-ai.git
 cd Kube-ai
+
+# 2. Create virtual environment
+python -m venv kube_env
+
+# 3. Activate environment
+# Windows:
+kube_env\Scripts\activate
+# Linux/Mac:
+source kube_env/bin/activate
+
+# 4. Install dependencies
+pip install --upgrade pip
 pip install -r requirements_mindspore.txt
 ```
 
 ### Quick Demo
 ```bash
+# Make sure virtual environment is activated
+# You should see (kube_env) in your prompt
+
 # 1. Download sample aerial images
 python download_dataset.py
 
@@ -138,6 +154,9 @@ python kube_ai_inference.py \
     --model_path models/kube_ai_final.ckpt \
     --image_path data/JPEGImages/cattle_001.jpg \
     --output_path result.jpg
+
+# 4. Deactivate when done
+deactivate
 ```
 
 ---
