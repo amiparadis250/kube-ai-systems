@@ -4,14 +4,34 @@ from PIL import Image
 import xml.etree.ElementTree as ET
 
 def prepare_data():
-    datasets = ['../datasets_clean/african_wildlife', '../datasets_clean/animals_detection', 
-                '../datasets_clean/animals_wild', '../datasets_clean/kaggle_cows']
+    # Training datasets
+    train_datasets = ['../datasets/kaggle_cows/images', '../datasets/livestock-qocf0/train/images', 
+                      '../datasets/wildlife-4satw/train/images', '../datasets/wildlife-yj7t1/train/images']
     
-    img_dir = '../data/JPEGImages'
-    ann_dir = '../data/Annotations'
-    os.makedirs(img_dir, exist_ok=True)
-    os.makedirs(ann_dir, exist_ok=True)
+    # Test datasets for accuracy evaluation
+    test_datasets = ['../datasets/livestock-qocf0/test/images', 
+                     '../datasets/wildlife-4satw/test/images', '../datasets/wildlife-yj7t1/test/images']
     
+    # Create directories
+    train_img_dir = '../data/JPEGImages'
+    train_ann_dir = '../data/Annotations'
+    test_img_dir = '../data/TestImages'
+    test_ann_dir = '../data/TestAnnotations'
+    
+    for dir_path in [train_img_dir, train_ann_dir, test_img_dir, test_ann_dir]:
+        os.makedirs(dir_path, exist_ok=True)
+    
+    # Process training data
+    train_count = process_datasets(train_datasets, train_img_dir, train_ann_dir, "train")
+    
+    # Process test data
+    test_count = process_datasets(test_datasets, test_img_dir, test_ann_dir, "test")
+    
+    print(f"✓ Prepared {train_count} training images")
+    print(f"✓ Prepared {test_count} test images")
+    print(f"✓ Total: {train_count + test_count} images")
+
+def process_datasets(datasets, img_dir, ann_dir, split_type):
     count = 0
     for dataset in datasets:
         if not os.path.exists(dataset):
@@ -21,16 +41,15 @@ def prepare_data():
             for file in files:
                 if file.lower().endswith(('.jpg', '.jpeg', '.png')):
                     src = os.path.join(root, file)
-                    dst = os.path.join(img_dir, f"img_{count:06d}.jpg")
+                    dst = os.path.join(img_dir, f"{split_type}_{count:06d}.jpg")
                     
                     try:
                         Image.open(src).convert('RGB').resize((640, 480)).save(dst, 'JPEG')
-                        create_xml(f"img_{count:06d}.jpg", ann_dir, dataset)
+                        create_xml(f"{split_type}_{count:06d}.jpg", ann_dir, dataset)
                         count += 1
                     except:
                         continue
-    
-    print(f"Prepared {count} images")
+    return count
 
 def create_xml(img_name, ann_dir, dataset_path):
     animal = 'cattle'
